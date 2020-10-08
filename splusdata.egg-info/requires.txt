@@ -1,0 +1,9 @@
+pandas
+astropy
+sqlalchemy
+psycopg2-binary
+numpy
+matplotlib
+colour
+pillow
+requests

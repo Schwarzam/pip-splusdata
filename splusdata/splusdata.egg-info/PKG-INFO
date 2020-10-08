@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: splusdata
+Version: 1.65
+Summary: Get data a lot of data within minutes
+Home-page: https://github.com/schwarzam/pip-splusdata
+Author: Gustavo Schwarz
+Author-email: gustavo.b.schwarz@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: Apache Software License

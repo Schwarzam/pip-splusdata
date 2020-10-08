@@ -1,0 +1,8 @@
+README.md
+setup.py
+src/splusdata.py
+src/splusdata.egg-info/PKG-INFO
+src/splusdata.egg-info/SOURCES.txt
+src/splusdata.egg-info/dependency_links.txt
+src/splusdata.egg-info/requires.txt
+src/splusdata.egg-info/top_level.txt
