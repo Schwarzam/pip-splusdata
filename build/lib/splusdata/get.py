@@ -92,7 +92,34 @@ def get_surveys():
 def get_conditions(condits):
     conditions = []
     for condit in condits:
-        if '<'in condit:
+
+        if '>='in condit:
+            operation = get_operation(condit)
+            if operation != 'none':
+                goal = replace_sym(condit)
+                cond = f'"{goal[0].strip()}" {operation} "{goal[1].strip()}" >= {goal[2].strip()}'
+                conditions.append(cond)
+                continue
+            else:
+                splits = condit.split('>=')
+                cond = f'"{splits[0].strip()}" >= {(splits[1])}'
+                conditions.append(cond)
+                continue
+
+        if '<='in condit:
+            operation = get_operation(condit)
+            if operation != 'none':
+                goal = replace_sym(condit)
+                cond = f'"{goal[0].strip()}" {operation} "{goal[1].strip()}" < {goal[2].strip()}'
+                conditions.append(cond)
+                continue
+            else:
+                splits = condit.split('<=')
+                cond = f'"{splits[0].strip()}" <= {(splits[1])}'
+                conditions.append(cond)
+                continue
+
+        if '<' in condit:
             operation = get_operation(condit)
             if operation != 'none':
                 goal = replace_sym(condit)
@@ -100,9 +127,11 @@ def get_conditions(condits):
                 conditions.append(cond)
             else:
                 splits = condit.split('<')
+                print(splits)
                 cond = f'"{splits[0].strip()}" < {(splits[1])}'
                 conditions.append(cond)
-        if '>'in condit:
+
+        if '>' in condit:
             operation = get_operation(condit)
             if operation != 'none':
                 goal = replace_sym(condit)
@@ -112,6 +141,7 @@ def get_conditions(condits):
                 splits = condit.split('>')
                 cond = f'"{splits[0].strip()}" > {float(splits[1])}'
                 conditions.append(cond)
+
         if '=' in condit:
             splits = condit.split('=')
             try:
@@ -231,30 +261,31 @@ def queryidr3_complex(Survey, conditions=[], columns = ['Field', 'ID', 'RA', 'DE
 
 
 def get_conditions_complex(condits, engine):
-    #try:
-    conditions = []
-    for condit in condits:
-        operation = get_operation(condit)
-        cond = sql_ready(condit, engine)
-        conditions.append(cond)
+    try:
+        conditions = []
+        for condit in condits:
+            operation = get_operation(condit)
+            cond = sql_ready(condit, engine)
+            conditions.append(cond)
 
-    return conditions
-    #except:
-    #print('Error with conditions')
+        return conditions
+    except:
+        print('Error with conditions')
+
 
 def sql_ready(string, engine):
-    #try:
-    cols = get_columns_return(engine)
+    try:
+        cols = get_columns_return(engine)
 
-    for key, col in enumerate(cols):
-        if col != 'A' in string and key == 0:
-            string = string.replace(col, f'"{col}"')
-        if col != 'A' and col != 'CLASS_STAR' and col in string and key != 0:
-            string = string.replace(col, f'"{col}"')
+        for key, col in enumerate(cols):
+            if col != 'A' in string and key == 0:
+                string = string.replace(col, f'"{col}"')
+            if col != 'A' and col != 'CLASS_STAR' and col in string and key != 0:
+                string = string.replace(col, f'"{col}"')
 
-    return(string)
-    #except:
-    #print('Error with conditions')
+        return(string)
+    except:
+    print('Error with conditions')
 
 
 def queryidr3_sql():

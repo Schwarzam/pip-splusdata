@@ -4,7 +4,7 @@ splusdata/__init__.py
 splusdata/get.py
 splusdata/imgs.py
 splusdata/plot.py
-splusdata/search_coords.py
+splusdata/searchcoords.py
 splusdata.egg-info/PKG-INFO
 splusdata.egg-info/SOURCES.txt
 splusdata.egg-info/dependency_links.txt
