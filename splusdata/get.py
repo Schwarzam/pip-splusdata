@@ -141,6 +141,23 @@ def get_conditions(condits):
                 cond = f'"{splits[0].strip()}" > {float(splits[1])}'
                 conditions.append(cond)
 
+        if '==' in condit:
+            splits = condit.split('==')
+            try:
+                operation = get_operation(condit)
+                if operation != 'none':
+                    goal = replace_sym(condit)
+                    cond = f'"{goal[0].strip()}" {operation} "{goal[1].strip()}" = {goal[2].strip()}'
+                    conditions.append(cond)
+                    continue
+                else:
+                    float(splits[1])
+                    cond = f""""{splits[0].strip()}" = {splits[1]}' """
+                    conditions.append(cond)
+                    continue
+            except:
+                pass
+
         if '=' in condit:
             splits = condit.split('=')
             try:
@@ -153,21 +170,6 @@ def get_conditions(condits):
                 else:
                     float(splits[1])
                     cond = f'"{splits[0].strip()}" = {splits[1]}'
-                    conditions.append(cond)
-            except:
-                pass
-
-        if '==' in condit:
-            splits = condit.split('==')
-            try:
-                operation = get_operation(condit)
-                if operation != 'none':
-                    goal = replace_sym(condit)
-                    cond = f'"{goal[0].strip()}" {operation} "{goal[1].strip()}" = {goal[2].strip()}'
-                    conditions.append(cond)
-                else:
-                    float(splits[1])
-                    cond = f""""{splits[0].strip()}" = {splits[1]}' """
                     conditions.append(cond)
             except:
                 pass

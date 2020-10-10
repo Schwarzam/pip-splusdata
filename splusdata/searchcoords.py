@@ -6,7 +6,7 @@ import sqlalchemy
 from sqlalchemy import inspect
 import psycopg2
 
-class searchcords:
+class searchcoords:
   def __init__(self, ra, dec):
     self.ra = ra
     self.dec = dec
