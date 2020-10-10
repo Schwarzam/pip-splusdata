@@ -285,7 +285,7 @@ def sql_ready(string, engine):
 
         return(string)
     except:
-    print('Error with conditions')
+        print('Error with conditions')
 
 
 def queryidr3_sql():

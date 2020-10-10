@@ -6,8 +6,6 @@ import sqlalchemy
 from sqlalchemy import inspect
 import psycopg2
 
-searchcords(48.8034,-30.9018).search_id()
-
 class searchcords:
   def __init__(self, ra, dec):
     self.ra = ra

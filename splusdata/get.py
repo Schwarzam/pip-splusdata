@@ -127,7 +127,6 @@ def get_conditions(condits):
                 conditions.append(cond)
             else:
                 splits = condit.split('<')
-                print(splits)
                 cond = f'"{splits[0].strip()}" < {(splits[1])}'
                 conditions.append(cond)
 
@@ -285,7 +284,7 @@ def sql_ready(string, engine):
 
         return(string)
     except:
-    print('Error with conditions')
+        print('Error with conditions')
 
 
 def queryidr3_sql():
