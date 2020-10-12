@@ -58,7 +58,6 @@ def queryidr3(Survey, conditions=[], columns = ['Field', 'ID', 'RA', 'DEC', 'X',
                     query = str(query) + 'and ' + str(condition) + ' '
             print('getting data...\n')
             print('it may take a minute\n')
-            print(query)
         result = pd.read_sql_query(query, engine)
         print('Done!')
         return(result)

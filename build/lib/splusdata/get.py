@@ -118,3 +118,12 @@ def queryidr3_sql():
         return result
     except:
         print("ERROR with query")
+
+def format_cols(columns):
+    x = ''
+    for key, col in enumerate(columns):
+        if key != len(columns) - 1:
+            x = x + str(f'"{col}",')
+        if key == len(columns) - 1:
+            x = x + str(f'"{col}"')
+    return x
