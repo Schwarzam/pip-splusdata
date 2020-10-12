@@ -6,7 +6,7 @@ import sqlalchemy
 from sqlalchemy import inspect
 import psycopg2
 
-class searchcords:
+class searchcoords:
   def __init__(self, ra, dec):
     self.ra = ra
     self.dec = dec
@@ -62,7 +62,7 @@ class searchcords:
         print('Field not in any Survey')
         return 0
 
-    query = f"""SELECT "RA", "DEC", "ID" FROM "{ans.SUBREGION.array[0].lower()}" WHERE "RA" < {ra+0.02} and "RA" > {ra - 0.02} and "DEC" > {dec -0.02} and "DEC" < {dec + 0.02}"""
+    query = f"""SELECT "RA", "DEC", "ID", "Field" FROM "{ans.SUBREGION.array[0].lower()}" WHERE "RA" < {ra+0.02} and "RA" > {ra - 0.02} and "DEC" > {dec -0.02} and "DEC" < {dec + 0.02}"""
     Galaxy = pd.read_sql_query(query, engine)
 
     ra2 = Galaxy.RA.to_numpy()

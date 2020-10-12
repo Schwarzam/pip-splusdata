@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
      name='splusdata',
-     version='2.25',
+     version='2.35',
      packages = setuptools.find_packages(),
      author="Gustavo Schwarz",
      author_email="gustavo.b.schwarz@gmail.com",
