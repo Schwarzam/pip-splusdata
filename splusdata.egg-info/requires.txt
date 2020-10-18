@@ -1,9 +1,10 @@
-pandas
 astropy
-sqlalchemy
-psycopg2-binary
-numpy
-matplotlib
 colour
+matplotlib
+numpy
+pandas
 pillow
+psycopg2-binary
 requests
+scipy
+sqlalchemy

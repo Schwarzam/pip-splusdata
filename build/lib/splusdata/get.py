@@ -10,9 +10,10 @@ import psycopg2
 import re
 import itertools
 
-def queryidr3(Survey, conditions=[], columns = ['Field', 'ID', 'RA', 'DEC', 'X', 'Y', 'ISOarea', 'MU_MAX', 'A', 'B', 'THETA', 'ELONGATION', 'ELLIPTICITY', 'PhotoFlagDet', 'CLASS_STAR', 'FWHM', 'U_auto', 'e_U_auto', 'F378_auto', 'e_F378_auto', 'F395_auto', 'e_F395_auto', 'F410_auto', 'e_F410_auto', 'F430_auto', 'e_F430_auto', 'G_auto', 'e_G_auto', 'F515_auto', 'e_F515_auto', 'R_auto', 'e_R_auto', 'F660_auto', 'e_F660_auto', 'I_auto', 'e_I_auto', 'F861_auto', 'e_F861_auto', 'Z_auto', 'e_Z_auto', 'nDet_auto', 'U_aper_3', 'e_U_aper_3', 'F378_aper_3', 'e_F378_aper_3', 'F395_aper_3', 'e_F395_aper_3', 'F410_aper_3', 'e_F410_aper_3', 'F430_aper_3', 'e_F430_aper_3', 'G_aper_3', 'e_G_aper_3', 'F515_aper_3', 'e_F515_aper_3', 'R_aper_3', 'e_R_aper_3', 'F660_aper_3', 'e_F660_aper_3', 'I_aper_3', 'e_I_aper_3', 'F861_aper_3', 'e_F861_aper_3', 'Z_aper_3', 'e_Z_aper_3', 'U_PStotal', 'e_U_PStotal', 'F378_PStotal', 'e_F378_PStotal', 'F395_PStotal', 'e_F395_PStotal', 'F410_PStotal', 'e_F410_PStotal', 'F430_PStotal', 'e_F430_PStotal', 'G_PStotal', 'e_G_PStotal', 'F515_PStotal', 'e_F515_PStotal', 'R_PStotal', 'e_R_PStotal', 'F660_PStotal', 'e_F660_PStotal', 'I_PStotal', 'e_I_PStotal', 'F861_PStotal', 'e_F861_PStotal', 'Z_PStotal', 'e_Z_PStotal', 'U_petro', 'F378_petro', 'F395_petro', 'F410_petro', 'F430_petro','G_petro','F515_petro','R_petro','F660_petro','I_petro','F861_petro','Z_petro','e_U_petro','e_F378_petro','e_F395_petro','e_F410_petro','e_F430_petro','e_G_petro','e_F515_petro','e_R_petro','e_F660_petro','e_I_petro','e_F861_petro','e_Z_petro']):
-    password = str(input("input password: "))
-    engine = sqlalchemy.create_engine(f'postgresql://SPLUS_readonly:{password}@143.107.18.89:5432/splus')
+def queryidr3(Survey, conditions=[], columns = ['Field', 'ID', 'RA', 'DEC', 'X', 'Y', 'ISOarea', 'MU_MAX', 'A', 'B', 'THETA', 'ELONGATION', 'ELLIPTICITY', 'PhotoFlagDet', 'CLASS_STAR', 'FWHM', 'U_auto', 'e_U_auto', 'F378_auto', 'e_F378_auto', 'F395_auto', 'e_F395_auto', 'F410_auto', 'e_F410_auto', 'F430_auto', 'e_F430_auto', 'G_auto', 'e_G_auto', 'F515_auto', 'e_F515_auto', 'R_auto', 'e_R_auto', 'F660_auto', 'e_F660_auto', 'I_auto', 'e_I_auto', 'F861_auto', 'e_F861_auto', 'Z_auto', 'e_Z_auto', 'nDet_auto', 'U_aper_3', 'e_U_aper_3', 'F378_aper_3', 'e_F378_aper_3', 'F395_aper_3', 'e_F395_aper_3', 'F410_aper_3', 'e_F410_aper_3', 'F430_aper_3', 'e_F430_aper_3', 'G_aper_3', 'e_G_aper_3', 'F515_aper_3', 'e_F515_aper_3', 'R_aper_3', 'e_R_aper_3', 'F660_aper_3', 'e_F660_aper_3', 'I_aper_3', 'e_I_aper_3', 'F861_aper_3', 'e_F861_aper_3', 'Z_aper_3', 'e_Z_aper_3', 'U_PStotal', 'e_U_PStotal', 'F378_PStotal', 'e_F378_PStotal', 'F395_PStotal', 'e_F395_PStotal', 'F410_PStotal', 'e_F410_PStotal', 'F430_PStotal', 'e_F430_PStotal', 'G_PStotal', 'e_G_PStotal', 'F515_PStotal', 'e_F515_PStotal', 'R_PStotal', 'e_R_PStotal', 'F660_PStotal', 'e_F660_PStotal', 'I_PStotal', 'e_I_PStotal', 'F861_PStotal', 'e_F861_PStotal', 'Z_PStotal', 'e_Z_PStotal', 'U_petro', 'F378_petro', 'F395_petro', 'F410_petro', 'F430_petro','G_petro','F515_petro','R_petro','F660_petro','I_petro','F861_petro','Z_petro','e_U_petro','e_F378_petro','e_F395_petro','e_F410_petro','e_F430_petro','e_G_petro','e_F515_petro','e_R_petro','e_F660_petro','e_I_petro','e_F861_petro','e_Z_petro'], password = None):
+    if not password:
+        password = str(input("input password: "))
+    engine = sqlalchemy.create_engine(f'postgresql://SPLUS_readonly:{password}@splus.cloud:5432/splus')
 
     if columns != 'all':
         columns = format_cols(columns)
@@ -68,9 +69,10 @@ def queryidr3(Survey, conditions=[], columns = ['Field', 'ID', 'RA', 'DEC', 'X',
     else:
         print("Something is wrong!")
 
-def get_columns():
-    password = str(input("input password: "))
-    engine = sqlalchemy.create_engine(f'postgresql://SPLUS_readonly:{password}@143.107.18.89:5432/splus')
+def get_columns(password = None):
+    if not password:
+        password = str(input("input password: "))
+    engine = sqlalchemy.create_engine(f'postgresql://SPLUS_readonly:{password}@splus.cloud:5432/splus')
 
     cols = []
     for x in inspect(engine).get_columns('main3.1'):
@@ -87,7 +89,7 @@ def get_columns_return(engine):
 
 
 def get_surveys():
-    surveys = ['main3.1', 'main3.2', 'main3.3', 'main3.4', 'main3.5', 'stripe82']
+    surveys = ['main3.1', 'main3.2', 'main3.3', 'main3.4', 'main3.5', 'main3.6', 'main3.7', 'main3.8', 'stripe82']
     print(surveys)
 
 def get_conditions(condits):
@@ -106,10 +108,11 @@ def get_conditions(condits):
     return conditions
 
 
-def queryidr3_sql():
+def queryidr3_sql(password = None):
     print('Example: SELECT "RA", "DEC" FROM "main3.1" WHERE "RA" > 68.1 and "RA" < 68.2')
-    password = str(input("input password: "))
-    engine = sqlalchemy.create_engine(f'postgresql://SPLUS_readonly:{password}@143.107.18.89:5432/splus')
+    if not password:
+        password = str(input("input password: "))
+    engine = sqlalchemy.create_engine(f'postgresql://SPLUS_readonly:{password}@splus.cloud:5432/splus')
 
     try:
         result = pd.read_sql_query(input("input query: "), engine)
