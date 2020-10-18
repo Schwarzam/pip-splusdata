@@ -2,6 +2,7 @@ README.md
 setup.py
 splusdata/__init__.py
 splusdata/get.py
+splusdata/get_fits.py
 splusdata/imgs.py
 splusdata/plot.py
 splusdata/searchcoords.py

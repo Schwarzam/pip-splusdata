@@ -21,7 +21,6 @@ class searchcoords:
     query = f"""SELECT "RA", "DEC", "NAME" FROM "Ref" WHERE "RA" < {ra+7} and "RA" > {ra - 7} and "DEC" > {dec -7} and "DEC" < {dec + 7}"""
     Galaxy = pd.read_sql_query(query, engine)
 
-    lent = len(Galaxy)
     ra2 = Galaxy.RA.to_numpy()
     dec2 = Galaxy.DEC.to_numpy()
 
