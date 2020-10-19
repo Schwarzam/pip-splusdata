@@ -1,0 +1,7 @@
+splusdata.egg-info
+__pycache__
+build
+.git
+dist
+.DS_Store
+setup.py
